@@ -15,7 +15,7 @@ You can install it by composer.
 
 composer.json
 
-````
+```json
 {
     "name": "my-project",
     "version": "1.0.0",
@@ -23,11 +23,6 @@ composer.json
         "fluent/logger": "v0.3.7"
     }
 }
-````
-
-````
-wget http://getcomposer.org/composer.phar
-php -d detect_unicode=0 composer.phar install
 ````
 
 # Usage
