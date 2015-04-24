@@ -2,7 +2,7 @@
     "name": "fluent/logger",
     "type": "library",
     "description": "a simple fluent logger",
-    "keywords": ["log","logging"],
+    "keywords": ["log","logger"],
     "homepage": "http://github.com/fluent/fluent-logger-php",
     "license": "Apache",
     "authors": [
