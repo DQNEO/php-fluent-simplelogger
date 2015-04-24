@@ -93,6 +93,7 @@ Apache License, Version 2.0
 
 # Contributors
 
+* DQNEO
 * Daniele Alessandri
 * Hiro Yoshikawa
 * Kazuki Ohta
