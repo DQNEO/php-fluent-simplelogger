@@ -79,14 +79,6 @@ you can install apigen with following commands
 pear config-set auto_discover 1
 pear install pear.apigen.org/apigen
 ````
-
-you can update gh-pages with following command on top directory.
-
-````
-rake fluent:docs
-git push origin gh-pages
-````
-
 # License
 Apache License, Version 2.0
 
