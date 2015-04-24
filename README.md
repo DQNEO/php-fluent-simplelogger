@@ -11,7 +11,7 @@
 
 ## Installation
 
-### Using Composer
+You can install it by composer.
 
 composer.json
 
@@ -28,13 +28,6 @@ composer.json
 ````
 wget http://getcomposer.org/composer.phar
 php -d detect_unicode=0 composer.phar install
-````
-
-### copy directory
-
-````
-git clone https://github.com/fluent/fluent-logger-php.git
-cp -r src/Fluent <path/to/your_project>
 ````
 
 # Usage
