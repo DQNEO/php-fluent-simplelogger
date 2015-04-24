@@ -32,11 +32,9 @@ composer.json
 // you can choose your own AutoLoader
 require_once __DIR__.'/src/Fluent/Autoloader.php';
 
-use Fluent\Logger\FluentLogger;
+use DQNEO\Fluent\SimpleLogger;
 
-Fluent\Autoloader::register();
-
-$logger = new FluentLogger("localhost","24224");
+$logger = new SimpleLogger("localhost","24224");
 $logger->post("debug.test",array("hello"=>"world"));
 ````
 
