@@ -70,15 +70,6 @@ fluent-logger-php
                                     `------aggregator fluentd
 ````
 
-# Documentation
-
-fluent-logger-php uses <a href="http://apigen.org/">apigen</a> as a document generator.
-you can install apigen with following commands
-
-````
-pear config-set auto_discover 1
-pear install pear.apigen.org/apigen
-````
 # License
 Apache License, Version 2.0
 
