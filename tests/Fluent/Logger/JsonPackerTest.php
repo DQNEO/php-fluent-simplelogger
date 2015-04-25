@@ -4,7 +4,7 @@ namespace FluentTests\Logger;
 use Fluent\Logger\Entity;
 use Fluent\Logger\FluentLogger;
 
-class JsonPackerTest extends \PHPUnit_Framework_TestCase
+class JsonPackTest extends \PHPUnit_Framework_TestCase
 {
     const TAG           = "debug.test";
     const EXPECTED_TIME = 123456789;
