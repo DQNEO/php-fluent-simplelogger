@@ -2,6 +2,8 @@
 
 a PHP library to record events to fluentd
 
+[![Build Status](https://travis-ci.org/DQNEO/php-fluent-simplelogger.svg?branch=master)](https://travis-ci.org/DQNEO/php-fluent-simplelogger)
+
 # Requirements
 
 - PHP 5.4 or higher
