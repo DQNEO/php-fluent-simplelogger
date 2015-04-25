@@ -29,10 +29,4 @@ interface LoggerInterface
      */
     public function post($tag, array $data);
 
-    /**
-     * @abstract
-     * @param \Fluent\Logger\Entity $entity
-     */
-    public function post2(\Fluent\Logger\Entity $entity);
-
 }

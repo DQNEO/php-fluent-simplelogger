@@ -267,7 +267,7 @@ class FluentLogger extends BaseLogger
         }
 
         // could not suppress warning without ini setting.
-        // for now, we use error control operators. 
+        // for now, we use error control operators.
         $socket = @stream_socket_client($this->transport, $errno, $errstr,
             $this->getOption("connection_timeout", self::CONNECTION_TIMEOUT),
             $connect_options
@@ -308,17 +308,6 @@ class FluentLogger extends BaseLogger
     {
         $entity = new Entity($tag, $data);
 
-        return $this->postImpl($entity);
-    }
-
-    /**
-     * send a message to specified fluentd.
-     *
-     * @param Entity $entity
-     * @return bool
-     */
-    public function post2(Entity $entity)
-    {
         return $this->postImpl($entity);
     }
 
