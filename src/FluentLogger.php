@@ -16,14 +16,14 @@
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  */
-namespace Fluent\Logger;
+namespace DQNEO\Fluent;
 
 /**
  * Fluent Logger
  *
  * Fluent Logger client communicates to Fluentd with json formatted messages.
  */
-class FluentLogger implements LoggerInterface
+class SimpleLogger implements LoggerInterface
 {
     const CONNECTION_TIMEOUT = 3;
     const SOCKET_TIMEOUT     = 3;
