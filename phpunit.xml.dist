@@ -37,7 +37,6 @@
       <exclude>
         <directory>examples</directory>
         <directory>tests</directory>
-        <directory>cookbooks</directory>
         <directory>builds</directory>
       </exclude>
     </whitelist>
