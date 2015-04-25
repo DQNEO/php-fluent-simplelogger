@@ -11,7 +11,7 @@ a PHP library to record events to fluentd
 
 You can install it by composer.
 ```
-composer require fluent/simplelogger
+composer require dqneo/fluent-simplelogger
 ```
 
 or create composer.json and exec `composer install'
