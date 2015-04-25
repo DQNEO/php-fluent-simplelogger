@@ -23,7 +23,7 @@ namespace Fluent\Logger;
  *
  * Fluent Logger client communicates to Fluentd with json formatted messages.
  */
-class FluentLogger implements \Fluent\Logger\LoggerInterface
+class FluentLogger implements LoggerInterface
 {
     const CONNECTION_TIMEOUT = 3;
     const SOCKET_TIMEOUT     = 3;
