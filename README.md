@@ -19,7 +19,7 @@ or create composer.json and exec `composer install'
 ```json
 {
     "require": {
-        "fluent/logger": "v0.3.7"
+        "dqneo/fluent-simplelogger": "0.0.1"
     }
 }
 ````
@@ -28,20 +28,13 @@ or create composer.json and exec `composer install'
 
 ````
 <?php
-// you can choose your own AutoLoader
 require_once __DIR__ . '/vendor/autoload.php';
 
-use DQNEO\Fluent\Logger;
+use DQNEO\Fluent\SimpleLogger;
 
-$logger = new Logger("localhost","24224");
+$logger = new SimpleLogger("localhost","24224");
 $logger->post("debug.test",array("hello"=>"world"));
 ````
-
-# Todos
-
-* Stabilize method signatures.
-* Improve performance and reliability.
-
 # Restrictions
 
 * Buffering and re-send support
