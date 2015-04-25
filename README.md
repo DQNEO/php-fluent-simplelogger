@@ -12,13 +12,14 @@
 ## Installation
 
 You can install it by composer.
+```
+composer require fluent/simplelogger
+```
 
-composer.json
+or create composer.json and exec `composer install'
 
 ```json
 {
-    "name": "my-project",
-    "version": "1.0.0",
     "require": {
         "fluent/logger": "v0.3.7"
     }
