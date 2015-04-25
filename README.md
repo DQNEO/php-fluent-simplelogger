@@ -30,11 +30,11 @@ composer.json
 ````
 <?php
 // you can choose your own AutoLoader
-require_once __DIR__.'/src/Fluent/Autoloader.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use DQNEO\Fluent\SimpleLogger;
+use DQNEO\Fluent\Logger;
 
-$logger = new SimpleLogger("localhost","24224");
+$logger = new Logger("localhost","24224");
 $logger->post("debug.test",array("hello"=>"world"));
 ````
 
