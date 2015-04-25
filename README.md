@@ -19,7 +19,7 @@ or create composer.json and exec `composer install'
 ```json
 {
     "require": {
-        "dqneo/fluent-simplelogger": "0.0.1"
+        "dqneo/fluent-simplelogger": "0.0.4"
     }
 }
 ````
