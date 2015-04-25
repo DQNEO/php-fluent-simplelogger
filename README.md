@@ -33,8 +33,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use DQNEO\Fluent\SimpleLogger;
 
 $logger = new SimpleLogger("localhost","24224");
-$logger->post("debug.test",array("hello"=>"world"));
+$logger->post("debug.test", ["hello"=>"world"]);
 ````
+
 # Restrictions
 
 * Buffering and re-send support
