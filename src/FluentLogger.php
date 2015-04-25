@@ -19,6 +19,54 @@
 namespace Fluent\Logger;
 
 /**
+ * Fluent basic logger class.
+ *
+ * all fluent logger must extend this class.
+ */
+abstract class BaseLogger implements \Fluent\Logger\LoggerInterface
+{
+    protected $error_handler = null;
+
+    /**
+     * @param      $entity
+     * @param void $error error message
+     */
+    public function defaultErrorHandler(BaseLogger $logger, Entity $entity, $error)
+    {
+        error_log(sprintf("%s %s %s: %s", get_class($logger), $error, $entity->getTag(), json_encode($entity->getData())));
+    }
+
+    /**
+     * @param Entity $entity
+     * @param void   $error error message
+     */
+    protected function processError(Entity $entity, $error)
+    {
+        if (!is_null($this->error_handler)) {
+            call_user_func_array($this->error_handler, array($this, $entity, $error));
+        } else {
+            $this->defaultErrorHandler($this, $entity, $error);
+        }
+    }
+
+    /**
+     * @param  callable  $callable function name, array or closure
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
+    public function registerErrorHandler($callable)
+    {
+        if (is_callable($callable)) {
+            $this->error_handler = $callable;
+        } else {
+            throw new \InvalidArgumentException("Error handler must be callable.");
+        }
+
+        return true;
+    }
+}
+
+/**
  * Fluent Logger
  *
  * Fluent Logger client communicates to Fluentd with json formatted messages.
