@@ -2,7 +2,7 @@
 namespace FluentTests\Logger;
 
 use Fluent\Logger\Entity;
-use Fluent\Logger\JsonPacker;
+use Fluent\Logger\FluentLogger;
 
 class JsonPackerTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class JsonPackerTest extends \PHPUnit_Framework_TestCase
     {
         $entity = new Entity(self::TAG, $this->expected_data, self::EXPECTED_TIME);
 
-        $packer = new JsonPacker();
+        $packer = new FluentLogger();
         $result = $packer->pack($entity);
 
         /*

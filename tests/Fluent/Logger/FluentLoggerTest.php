@@ -141,24 +141,6 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testSetPacker()
-    {
-        $logger = new FluentLogger("localhost");
-        $packer = new \Fluent\Logger\JsonPacker();
-
-        $prop = new \ReflectionProperty($logger, "packer");
-        $prop->setAccessible(true);
-        $logger->setPacker($packer);
-        $this->assertSame($packer, $prop->getValue($logger), "unexpected packer was set");
-    }
-
-    public function testGetPacker()
-    {
-        $logger = new FluentLogger("localhost");
-
-        $this->assertInstanceOf("Fluent\\Logger\\PackerInterface", $logger->getPacker(), "testGetPacker returns unexpected packer");
-    }
-
     public function testClearInstances()
     {
         $prop = new \ReflectionProperty("\Fluent\Logger\FluentLogger", "instances");

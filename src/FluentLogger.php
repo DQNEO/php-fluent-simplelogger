@@ -61,9 +61,6 @@ class FluentLogger implements LoggerInterface
     /* @var resource */
     protected $socket;
 
-    /* @var PackerInterface */
-    protected $packer;
-
     protected $options = array(
         "socket_timeout"     => self::SOCKET_TIMEOUT,
         "connection_timeout" => self::CONNECTION_TIMEOUT,
@@ -102,13 +99,11 @@ class FluentLogger implements LoggerInterface
      * @param string          $host
      * @param int             $port
      * @param array           $options
-     * @param PackerInterface $packer
      * @return FluentLogger
      */
     public function __construct($host = FluentLogger::DEFAULT_ADDRESS,
                                 $port = FluentLogger::DEFAULT_LISTEN_PORT,
-                                array $options = array(),
-                                PackerInterface $packer = null)
+                                array $options = array())
     {
         /* keep original host and port */
         $this->host = $host;
@@ -116,13 +111,6 @@ class FluentLogger implements LoggerInterface
 
         /* make various URL style socket transports */
         $this->transport = self::getTransportUri($host, $port);
-
-        if (is_null($packer)) {
-            /* for backward compatibility */
-            $packer = new JsonPacker();
-        }
-
-        $this->packer = $packer;
 
         $this->mergeOptions($options);
     }
@@ -207,27 +195,6 @@ class FluentLogger implements LoggerInterface
         }
 
         return $result;
-    }
-
-    /**
-     * set packer
-     *
-     * @param PackerInterface $packer
-     * @return PackerInterface
-     */
-    public function setPacker(PackerInterface $packer)
-    {
-        return $this->packer = $packer;
-    }
-
-    /**
-     * get current packer
-     *
-     * @return JsonPacker|PackerInterface
-     */
-    public function getPacker()
-    {
-        return $this->packer;
     }
 
     /**
@@ -360,7 +327,7 @@ class FluentLogger implements LoggerInterface
      */
     protected function postImpl(Entity $entity)
     {
-        $buffer = $packed = $this->packer->pack($entity);
+        $buffer = $packed = $this->pack($entity);
         $length = strlen($packed);
         $retry  = $written = 0;
 
@@ -430,6 +397,17 @@ class FluentLogger implements LoggerInterface
         }
 
         return true;
+    }
+
+    /**
+     * pack entity as a json string.
+     *
+     * @param Entity $entity
+     * @return string
+     */
+    public function pack(Entity $entity)
+    {
+        return json_encode(array($entity->getTag(), $entity->getTime(), $entity->getData()));
     }
 
     /**
