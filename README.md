@@ -60,10 +60,10 @@ fluent-logger-php
 # License
 Apache License, Version 2.0
 
+Original from https://github.com/fluent/fluent-logger-php
 
 # Contributors
 
-* DQNEO
 * Daniele Alessandri
 * Hiro Yoshikawa
 * Kazuki Ohta
@@ -73,3 +73,4 @@ Apache License, Version 2.0
 * kiyoto
 * sasezaki
 * satokoma
+* DQNEO
