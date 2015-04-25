@@ -23,7 +23,7 @@ namespace DQNEO\Fluent;
  *
  * Fluent Logger client communicates to Fluentd with json formatted messages.
  */
-class SimpleLogger implements LoggerInterface
+class Logger implements LoggerInterface
 {
     const CONNECTION_TIMEOUT = 3;
     const SOCKET_TIMEOUT     = 3;
@@ -99,10 +99,10 @@ class SimpleLogger implements LoggerInterface
      * @param string          $host
      * @param int             $port
      * @param array           $options
-     * @return SimpleLogger
+     * @return Logger
      */
-    public function __construct($host = SimpleLogger::DEFAULT_ADDRESS,
-                                $port = SimpleLogger::DEFAULT_LISTEN_PORT,
+    public function __construct($host = Logger::DEFAULT_ADDRESS,
+                                $port = Logger::DEFAULT_LISTEN_PORT,
                                 array $options = array())
     {
         /* keep original host and port */
@@ -119,7 +119,7 @@ class SimpleLogger implements LoggerInterface
      * @param      $entity
      * @param void $error error message
      */
-    public function defaultErrorHandler(SimpleLogger $logger, Entity $entity, $error)
+    public function defaultErrorHandler(Logger $logger, Entity $entity, $error)
     {
         error_log(sprintf("%s %s %s: %s", get_class($logger), $error, $entity->getTag(), json_encode($entity->getData())));
     }
@@ -232,9 +232,9 @@ class SimpleLogger implements LoggerInterface
      * @param string $host
      * @param int    $port
      * @param array  $options
-     * @return SimpleLogger created logger object.
+     * @return Logger created logger object.
      */
-    public static function open($host = SimpleLogger::DEFAULT_ADDRESS, $port = SimpleLogger::DEFAULT_LISTEN_PORT, array $options = array())
+    public static function open($host = Logger::DEFAULT_ADDRESS, $port = Logger::DEFAULT_LISTEN_PORT, array $options = array())
     {
         $key = sprintf("%s:%s:%s", $host, $port, md5(join(",", $options)));
 

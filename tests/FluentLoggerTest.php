@@ -3,7 +3,7 @@
 namespace FluentTests\FluentLogger;
 
 use DQNEO\Fluent;
-use DQNEO\Fluent\SimpleLogger;
+use DQNEO\Fluent\Logger;
 
 class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        SimpleLogger::clearInstances();
+        Logger::clearInstances();
     }
 
     /**
@@ -24,8 +24,8 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
         $socket = fopen("php://memory", "a+");
 
         /* localhost is dummy string. we set php://memory as a socket */
-        $logger     = SimpleLogger::open("localhost");
-        $reflection = new \ReflectionProperty("DQNEO\Fluent\SimpleLogger", "socket");
+        $logger     = Logger::open("localhost");
+        $reflection = new \ReflectionProperty("DQNEO\Fluent\Logger", "socket");
         $reflection->setAccessible(true);
         $reflection->setValue($logger, $socket);
 
@@ -65,7 +65,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
     public function testPostWillReturnFalseInTheCaseOfPostingUnsuccessfullyByReachedMaxRetryCount()
     {
         /* localhost is dummy string. we set php://memory as a socket */
-        $logger = SimpleLogger::open("localhost");
+        $logger = Logger::open("localhost");
         $this->setSocket($logger, fopen("php://memory", "r"));
 
         $this->assertFalse($logger->post(self::TAG, array("foo" => "bar")), "Post method returned boolean");
@@ -97,14 +97,14 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     private function setSocket($logger, $socket)
     {
-        $reflection = new \ReflectionProperty("DQNEO\Fluent\SimpleLogger", "socket");
+        $reflection = new \ReflectionProperty("DQNEO\Fluent\Logger", "socket");
         $reflection->setAccessible(true);
         $reflection->setValue($logger, $socket);
     }
 
     private function getMockOfLogger(array $method)
     {
-        return $this->getMock("DQNEO\Fluent\SimpleLogger", array("write"), array("localhost"));
+        return $this->getMock("DQNEO\Fluent\Logger", array("write"), array("localhost"));
     }
 
     /**
@@ -112,7 +112,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTransportUri($host, $port, $expected_uri, $error_msg)
     {
-        $actual_uri = SimpleLogger::getTransportUri($host, $port);
+        $actual_uri = Logger::getTransportUri($host, $port);
         $this->assertEquals($expected_uri, $actual_uri, $error_msg);
     }
 
@@ -134,7 +134,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
     public function testGetTransportUriCauseExcpetion()
     {
         try {
-            SimpleLogger::getTransportUri("udp://localhost", 1192);
+            Logger::getTransportUri("udp://localhost", 1192);
             $this->fail("getTransportUri does not thorow exception");
         } catch (\Exception $e) {
             $this->assertInstanceOf("\\Exception", $e);
@@ -143,20 +143,20 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testClearInstances()
     {
-        $prop = new \ReflectionProperty("\DQNEO\Fluent\SimpleLogger", "instances");
+        $prop = new \ReflectionProperty("\DQNEO\Fluent\Logger", "instances");
         $prop->setAccessible(true);
 
-        SimpleLogger::open("localhost", 1191);
-        SimpleLogger::open("localhost", 1192);
-        $this->assertCount(2, $prop->getValue("SimpleLogger"));
+        Logger::open("localhost", 1191);
+        Logger::open("localhost", 1192);
+        $this->assertCount(2, $prop->getValue("Logger"));
 
-        SimpleLogger::clearInstances();
-        $this->assertCount(0, $prop->getValue("SimpleLogger"));
+        Logger::clearInstances();
+        $this->assertCount(0, $prop->getValue("Logger"));
     }
 
     public function testMergeOptions()
     {
-        $logger = new SimpleLogger("localhost");
+        $logger = new Logger("localhost");
         $prop   = new \ReflectionProperty($logger, "options");
         $prop->setAccessible(true);
 
@@ -169,7 +169,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testMergeOptionsThrowsException()
     {
-        $logger             = new SimpleLogger("localhost");
+        $logger             = new Logger("localhost");
         $additional_options = array("unexpected_key" => 10);
         try {
             $logger->mergeOptions($additional_options);
@@ -182,7 +182,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testSetOptions()
     {
-        $logger = new SimpleLogger("localhost");
+        $logger = new Logger("localhost");
         $prop   = new \ReflectionProperty($logger, "options");
         $prop->setAccessible(true);
 
@@ -193,7 +193,7 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testConnect()
     {
-        $logger = new SimpleLogger("localhost", 119223);
+        $logger = new Logger("localhost", 119223);
         $method = new \ReflectionMethod($logger, "connect");
         $method->setAccessible(true);
         try {
@@ -206,14 +206,14 @@ class FluentLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetOption()
     {
-        $logger = new SimpleLogger("localhost", 119223);
-        $this->assertEquals(SimpleLogger::CONNECTION_TIMEOUT, $logger->getOption("socket_timeout"),
+        $logger = new Logger("localhost", 119223);
+        $this->assertEquals(Logger::CONNECTION_TIMEOUT, $logger->getOption("socket_timeout"),
             "getOptions retunrs unexpected value");
     }
 
     public function testReconnect()
     {
-        $logger = new SimpleLogger("localhost", 119223);
+        $logger = new Logger("localhost", 119223);
         $method = new \ReflectionMethod($logger, "reconnect");
         $method->setAccessible(true);
         try {

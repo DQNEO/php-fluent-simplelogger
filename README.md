@@ -30,13 +30,13 @@ or create composer.json and exec `composer install'
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use DQNEO\Fluent\SimpleLogger;
+use DQNEO\Fluent\Logger;
 
 # If you want to connect by TCP
-$logger = new SimpleLogger("localhost","24224");
+$logger = new Logger("localhost","24224");
 
 # or If you want to connect by Unix Domain Socket
-$logger = new SimpleLogger("unix:///var/run/td-agent/td-agent.sock");
+$logger = new Logger("unix:///var/run/td-agent/td-agent.sock");
 
 
 $logger->post("debug.test", ["hello"=>"world"]);

@@ -2,7 +2,7 @@
 namespace FluentTests\Logger;
 
 use DQNEO\Fluent\Entity;
-use DQNEO\Fluent\SimpleLogger;
+use DQNEO\Fluent\Logger;
 
 class JsonPackTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class JsonPackTest extends \PHPUnit_Framework_TestCase
     {
         $entity = new Entity(self::TAG, $this->expected_data, self::EXPECTED_TIME);
 
-        $packer = new SimpleLogger();
+        $packer = new Logger();
         $result = $packer->pack($entity);
 
         /*
