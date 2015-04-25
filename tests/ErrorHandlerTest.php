@@ -4,8 +4,7 @@
 
 namespace FluentTests\FluentLogger;
 
-use Fluent\Logger;
-use Fluent\Logger\FluentLogger;
+use DQNEO\Fluent\SimpleLogger;
 
 function fluentTests_FluentLogger_DummyFunction()
 {
@@ -20,7 +19,7 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterErrorHandler($eh)
     {
-        $base = $this->getMockForAbstractClass('Fluent\Logger\FluentLogger');
+        $base = $this->getMockForAbstractClass('DQNEO\Fluent\SimpleLogger');
         $this->assertTrue($base->registerErrorHandler($eh));
     }
 
@@ -46,7 +45,7 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterInvalidErrorHandler($eh)
     {
-        $base = $this->getMockForAbstractClass('Fluent\Logger\FluentLogger');
+        $base = $this->getMockForAbstractClass('DQNEO\Fluent\SimpleLogger');
         $base->registerErrorHandler($eh);
     }
 

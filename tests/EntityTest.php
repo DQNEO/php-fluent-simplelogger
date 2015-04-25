@@ -1,7 +1,7 @@
 <?php
 namespace FluentTests\Logger;
 
-use Fluent\Logger\Entity;
+use DQNEO\Fluent\Entity;
 
 class EntityTest extends \PHPUnit_Framework_TestCase
 {

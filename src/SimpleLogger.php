@@ -99,10 +99,10 @@ class SimpleLogger implements LoggerInterface
      * @param string          $host
      * @param int             $port
      * @param array           $options
-     * @return FluentLogger
+     * @return SimpleLogger
      */
-    public function __construct($host = FluentLogger::DEFAULT_ADDRESS,
-                                $port = FluentLogger::DEFAULT_LISTEN_PORT,
+    public function __construct($host = SimpleLogger::DEFAULT_ADDRESS,
+                                $port = SimpleLogger::DEFAULT_LISTEN_PORT,
                                 array $options = array())
     {
         /* keep original host and port */
@@ -119,7 +119,7 @@ class SimpleLogger implements LoggerInterface
      * @param      $entity
      * @param void $error error message
      */
-    public function defaultErrorHandler(FluentLogger $logger, Entity $entity, $error)
+    public function defaultErrorHandler(SimpleLogger $logger, Entity $entity, $error)
     {
         error_log(sprintf("%s %s %s: %s", get_class($logger), $error, $entity->getTag(), json_encode($entity->getData())));
     }
@@ -232,9 +232,9 @@ class SimpleLogger implements LoggerInterface
      * @param string $host
      * @param int    $port
      * @param array  $options
-     * @return FluentLogger created logger object.
+     * @return SimpleLogger created logger object.
      */
-    public static function open($host = FluentLogger::DEFAULT_ADDRESS, $port = FluentLogger::DEFAULT_LISTEN_PORT, array $options = array())
+    public static function open($host = SimpleLogger::DEFAULT_ADDRESS, $port = SimpleLogger::DEFAULT_LISTEN_PORT, array $options = array())
     {
         $key = sprintf("%s:%s:%s", $host, $port, md5(join(",", $options)));
 
