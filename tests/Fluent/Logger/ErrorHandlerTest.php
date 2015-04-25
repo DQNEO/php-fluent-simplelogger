@@ -11,7 +11,7 @@ function fluentTests_FluentLogger_DummyFunction()
 {
 }
 
-class BaseLoggerTest extends \PHPUnit_Framework_TestCase
+class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * testing compatible before and after
