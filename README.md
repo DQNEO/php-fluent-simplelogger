@@ -2,12 +2,12 @@
 
 a PHP library to record events to fluentd
 
-## Requirements
+# Requirements
 
 - PHP 5.4 or higher
 - fluentd v0.9.20 or higher
 
-## Installation
+# Installation
 
 You can install it by composer.
 ```
