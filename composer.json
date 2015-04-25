@@ -1,5 +1,5 @@
 {
-    "name": "dqneo/fluent",
+    "name": "fluent/simplelogger",
     "type": "library",
     "description": "a simple fluent logger",
     "keywords": ["log","logger"],
