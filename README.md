@@ -1,6 +1,6 @@
 # a Simle Fluent Logger for PHP
 
-**fluent-simple-logger** is a PHP library to record events to fluentd from a PHP application.
+a PHP library to record events to fluentd
 
 ## Requirements
 
