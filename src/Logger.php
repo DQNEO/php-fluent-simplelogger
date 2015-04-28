@@ -121,22 +121,6 @@ class Logger implements LoggerInterface
     }
 
     /**
-     * @param  callable  $callable function name, array or closure
-     * @return bool
-     * @throws \InvalidArgumentException
-     */
-    public function registerErrorHandler($callable)
-    {
-        if (is_callable($callable)) {
-            $this->error_handler = $callable;
-        } else {
-            throw new \InvalidArgumentException("Error handler must be callable.");
-        }
-
-        return true;
-    }
-
-    /**
      * make a various style transport uri with specified host and port.
      * currently, in_forward uses tcp transport only.
      *
