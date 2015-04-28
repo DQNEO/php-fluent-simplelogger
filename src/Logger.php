@@ -73,8 +73,6 @@ class Logger implements LoggerInterface
 
     protected static $instances = array();
 
-    protected $error_handler = null;
-
     /**
      * create fluent logger object.
      *
@@ -113,11 +111,7 @@ class Logger implements LoggerInterface
      */
     protected function processError(Entity $entity, $error)
     {
-        if (!is_null($this->error_handler)) {
-            call_user_func_array($this->error_handler, array($this, $entity, $error));
-        } else {
-            $this->defaultErrorHandler($this, $entity, $error);
-        }
+        $this->defaultErrorHandler($this, $entity, $error);
     }
 
     /**
